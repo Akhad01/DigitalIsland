@@ -16,9 +16,6 @@ class UserController {
       return next(ApiError.badRequest('Некорректный email или password'))
     }
 
-    console.log('email: ', email)
-    console.log('password: ', password)
-
     const candidate = await User.findOne({ where: { email } })
     if (candidate) {
       return next(
@@ -34,7 +31,7 @@ class UserController {
   }
 
   async login(req, res, next) {
-    const { email, password, role } = req.body
+    const { email, password } = req.body
     const user = await User.findOne({ where: { email } })
     if (!user) {
       return next(ApiError.internal('Пользователь не найден'))
@@ -50,11 +47,8 @@ class UserController {
   }
 
   async check(req, res, next) {
-    const { id } = req.query
-    if (!id) {
-      return next(ApiError.badRequest('Не задан ID'))
-    }
-    res.json(id)
+    const token = generateJwt(req.user.id, req.user.email, req.user.role)
+    return res.json({ token })
   }
 }
 
