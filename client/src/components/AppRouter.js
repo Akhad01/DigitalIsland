@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { authRoutes, publicRoutes, Re } from '../routes'
+import { authRoutes, publicRoutes } from '../routes'
 import Shop from '../pages/Shop'
+import { Context } from '..'
 
 const AppRouter = () => {
-  const isAuth = false
+  const { user } = useContext(Context)
+
   return (
     <Routes>
-      {isAuth &&
+      {user.isAuth &&
         authRoutes.map(({ path, Comment }) => (
           <Route key={path} path={path} element={<Comment />} />
         ))}
