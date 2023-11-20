@@ -5,11 +5,15 @@ export default class DeviceStore {
     this._types = [
       { id: 1, name: 'Холодильник' },
       { id: 2, name: 'Смартфоны' },
+      { id: 3, name: 'Ноутбук' },
+      { id: 4, name: 'Телевизоры' },
     ]
 
     this._brands = [
       { id: 1, name: 'Samsung' },
       { id: 2, name: 'Apple' },
+      { id: 3, name: 'Lonovo' },
+      { id: 4, name: 'Asus' },
     ]
 
     this._device = [
@@ -18,7 +22,7 @@ export default class DeviceStore {
         name: '13 pro',
         price: 10000,
         rating: 0,
-        img: '31469896-8d32-4eb7-8132-8e387c962070.jpg',
+        img: 'https://content2.onliner.by/catalog/device/header/b9fefc8c8f96dbc21492792f3a1a502d.jpeg',
         createdAt: '2023-11-12T08:21:57.219Z',
         updatedAt: '2023-11-12T08:21:57.219Z',
         typeId: 4,
@@ -29,7 +33,7 @@ export default class DeviceStore {
         name: 'Телевизор LG 65NANO766QA',
         price: 600,
         rating: 0,
-        img: '6f86df90-d620-4d52-9a06-756b510eccae.jpg',
+        img: 'https://content2.onliner.by/catalog/device/header/b9fefc8c8f96dbc21492792f3a1a502d.jpeg',
         createdAt: '2023-11-12T13:32:30.353Z',
         updatedAt: '2023-11-12T13:32:30.353Z',
         typeId: 6,
@@ -40,7 +44,7 @@ export default class DeviceStore {
         name: 'Холодильник SAMSUNG RS54N3003SA/WT',
         price: 1000,
         rating: 0,
-        img: '4ad33488-97f2-4b24-b797-0c1e4ff98018.jpg',
+        img: 'https://content2.onliner.by/catalog/device/header/b9fefc8c8f96dbc21492792f3a1a502d.jpeg',
         createdAt: '2023-11-12T13:34:51.277Z',
         updatedAt: '2023-11-12T13:34:51.277Z',
         typeId: 1,
@@ -51,13 +55,61 @@ export default class DeviceStore {
         name: 'POCO 3X',
         price: 200,
         rating: 0,
-        img: '494d902c-0611-4fba-b9e1-0792590d339e.jpg',
+        img: 'https://content2.onliner.by/catalog/device/header/b9fefc8c8f96dbc21492792f3a1a502d.jpeg',
+        createdAt: '2023-11-15T10:43:16.779Z',
+        updatedAt: '2023-11-15T10:43:16.779Z',
+        typeId: 4,
+        brandId: 4,
+      },
+      {
+        id: 5,
+        name: '13 pro',
+        price: 10000,
+        rating: 0,
+        img: 'https://content2.onliner.by/catalog/device/header/b9fefc8c8f96dbc21492792f3a1a502d.jpeg',
+        createdAt: '2023-11-12T08:21:57.219Z',
+        updatedAt: '2023-11-12T08:21:57.219Z',
+        typeId: 4,
+        brandId: 1,
+      },
+      {
+        id: 6,
+        name: 'Телевизор LG 65NANO766QA',
+        price: 600,
+        rating: 0,
+        img: 'https://content2.onliner.by/catalog/device/header/b9fefc8c8f96dbc21492792f3a1a502d.jpeg',
+        createdAt: '2023-11-12T13:32:30.353Z',
+        updatedAt: '2023-11-12T13:32:30.353Z',
+        typeId: 6,
+        brandId: 2,
+      },
+      {
+        id: 7,
+        name: 'Холодильник SAMSUNG RS54N3003SA/WT',
+        price: 1000,
+        rating: 0,
+        img: 'https://content2.onliner.by/catalog/device/header/b9fefc8c8f96dbc21492792f3a1a502d.jpeg',
+        createdAt: '2023-11-12T13:34:51.277Z',
+        updatedAt: '2023-11-12T13:34:51.277Z',
+        typeId: 1,
+        brandId: 1,
+      },
+      {
+        id: 8,
+        name: 'POCO 3X',
+        price: 200,
+        rating: 0,
+        img: 'https://content2.onliner.by/catalog/device/header/b9fefc8c8f96dbc21492792f3a1a502d.jpeg',
         createdAt: '2023-11-15T10:43:16.779Z',
         updatedAt: '2023-11-15T10:43:16.779Z',
         typeId: 4,
         brandId: 4,
       },
     ]
+
+    this._selectedType = {}
+
+    this._selectedBrand = {}
 
     makeAutoObservable(this)
   }
@@ -74,6 +126,14 @@ export default class DeviceStore {
     this._device = device
   }
 
+  setSelectedType(type) {
+    this._selectedType = type
+  }
+
+  setSelectedBrand(brand) {
+    this._selectedBrand = brand
+  }
+
   get types() {
     return this._types
   }
@@ -85,6 +145,12 @@ export default class DeviceStore {
   get devices() {
     return this._device
   }
-}
 
-const isAuth = false
+  get selectedType() {
+    return this._selectedType
+  }
+
+  get selectedBrand() {
+    return this._selectedBrand
+  }
+}
