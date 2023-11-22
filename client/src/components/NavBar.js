@@ -3,7 +3,7 @@ import { Context } from '..'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
-import NavLink from 'react-bootstrap/esm/NavLink'
+import { NavLink } from 'react-router-dom'
 import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../utils/consts'
 import { Button } from 'react-bootstrap'
 import { observer } from 'mobx-react-lite'
@@ -12,6 +12,12 @@ import { useNavigate } from 'react-router-dom'
 const NavBar = observer(() => {
   const { user } = useContext(Context)
   const navigate = useNavigate()
+
+  const logOut = () => {
+    user.setUser({})
+    user.setIsAuth(false)
+  }
+
   return (
     <div>
       <Navbar bg="dark" data-bs-theme="dark">
@@ -29,7 +35,7 @@ const NavBar = observer(() => {
               </Button>
               <Button
                 variant={'outline-light'}
-                onClick={() => navigate(LOGIN_ROUTE)}
+                onClick={() => logOut()}
                 style={{ marginLeft: '10px' }}
               >
                 Выйти
@@ -39,7 +45,7 @@ const NavBar = observer(() => {
             <Nav className="ml-auto" style={{ color: 'white' }}>
               <Button
                 variant={'outline-light'}
-                onClick={() => user.setIsAuth(true)}
+                onClick={() => navigate(LOGIN_ROUTE)}
               >
                 Авторизация
               </Button>

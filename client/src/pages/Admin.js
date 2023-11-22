@@ -23,7 +23,7 @@ const Admin = () => {
         variant={'outline-dark'}
         className="mt-4 p-2"
       >
-        Добавить бркнд
+        Добавить брeнд
       </Button>
       <Button
         onClick={() => setDeviceVisible(true)}

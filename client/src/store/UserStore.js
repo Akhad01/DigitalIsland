@@ -12,7 +12,7 @@ export default class UserStore {
   }
 
   setUser(user) {
-    this.user = user
+    this._user = user
   }
 
   get isAuth() {
@@ -23,5 +23,3 @@ export default class UserStore {
     return this._user
   }
 }
-
-const isAuth = false
